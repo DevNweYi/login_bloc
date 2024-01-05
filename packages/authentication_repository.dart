@@ -10,4 +10,16 @@ class AuthenticationRepository {
     yield AuthenticationStatus.unauthenticated;
     yield* _controller.stream;
   }
+
+  Future<void> logIn(
+      {required String username, required String password}) async {
+    await Future.delayed(const Duration(microseconds: 300),
+        () => _controller.add(AuthenticationStatus.authenticated));
+  }
+
+  void logOut() {
+    _controller.add(AuthenticationStatus.unauthenticated);
+  }
+
+  void dispose() => _controller.close();
 }
