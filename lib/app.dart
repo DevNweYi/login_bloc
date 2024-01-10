@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_bloc/authentication/bloc/authentication_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
+import 'home/view/home_page.dart';
+import 'login/view/login_page.dart';
 import 'splash/view/splash_page.dart';
 
 class App extends StatefulWidget {
@@ -64,10 +66,10 @@ class _AppViewState extends State<AppView> {
               switch (state.status) {
                 case AuthenticationStatus.authenticated:
                   _navigator.pushAndRemoveUntil(
-                      SplashPage.route(), (route) => false);
+                      HomePage.route(), (route) => false);
                 case AuthenticationStatus.unauthenticated:
                   _navigator.pushAndRemoveUntil(
-                      SplashPage.route(), (route) => false);
+                      LoginPage.route(), (route) => false);
                 case AuthenticationStatus.unknown:
                   break;
               }
